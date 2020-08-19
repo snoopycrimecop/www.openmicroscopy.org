@@ -5,6 +5,9 @@ sudo: required
 services:
 - docker
 
+before_script:
+  - ./generate_schemas.sh
+
 script:
   - docker run -it --rm -v $PWD:/srv/jekyll -eJEKYLL_UID=$UID jekyll/builder:pages jekyll build --config _config.yml,_prod.yml
   # Report 4xx status codes except 429 errors (Too Many Requests)
